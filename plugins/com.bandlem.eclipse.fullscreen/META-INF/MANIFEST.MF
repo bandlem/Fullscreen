@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime
 Bundle-Vendor: BANDLEM
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.0.201107241142
+Bundle-Version: 1.0.1.201108022141
 Eclipse-PlatformFilter: (&(osgi.os=macosx)(osgi.ws=cocoa))
 Bundle-Name: Fullscreen presenter for OSX on Lion
 Bundle-Activator: com.bandlem.eclipse.fullscreen.ui.Activator
