@@ -2,7 +2,7 @@
 <feature
       id="com.bandlem.eclipse.fullscreen.feature"
       label="Fullscreen feature for OSX Lion"
-      version="1.0.3.201108052333"
+      version="1.0.4.201108061054"
       provider-name="Bandlem Limited"
       plugin="com.bandlem.eclipse.fullscreen.ui"
       os="macosx"
@@ -30,7 +30,7 @@
          ws="cocoa"
          download-size="0"
          install-size="0"
-         version="1.0.3.201108052333"
+         version="1.0.4.201108061054"
          unpack="false"/>
 
 </feature>

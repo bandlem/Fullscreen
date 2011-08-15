@@ -144,11 +144,11 @@ public class SO {
 	 * On a 32-bit system, this will have the value <code>Integer.TYPE</code>
 	 * whilst on a 64-bit system it will have the value <code>Long.TYPE</code>.
 	 * 
-	 * This is dynamically determined based on the type of {@link OS#sel_null}
+	 * This is dynamically determined based on the type of {@link OS#class_NSObjectl}
 	 * compiled into the SWT library.
 	 */
 	public static final Class NSUInteger = Reflect.getField(OS.class,
-			"sel_null").getClass() == Long.class ? Long.TYPE : Integer.TYPE;
+			"class_NSObject").getClass() == Long.class ? Long.TYPE : Integer.TYPE;
 
 	/**
 	 * Private cache of selectors-to-ids.
