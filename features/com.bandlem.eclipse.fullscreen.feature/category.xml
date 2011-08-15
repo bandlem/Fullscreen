@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.bandlem.eclipse.fullscreen.feature_1.0.4.qualifier.jar" id="com.bandlem.eclipse.fullscreen.feature" version="1.0.4.qualifier" os="macosx" ws="cocoa">
+      <category name="com.bandlem.eclipse.util"/>
+   </feature>
+   <category-def name="com.bandlem.eclipse.util" label="General Utilities"/>
+</site>
