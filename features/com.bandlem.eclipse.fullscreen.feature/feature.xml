@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.bandlem.eclipse.fullscreen.feature"
+      label="Fullscreen feature for OSX Lion"
+      version="1.0.0.201107241142"
+      provider-name="Bandlem Limited"
+      plugin="com.bandlem.eclipse.fullscreen.ui"
+      os="macosx"
+      ws="cocoa">
+
+   <description>
+      Provides fullscreen Eclipse editing for OSX Lion
+   </description>
+
+   <copyright>
+      Copyright Alex Blewitt (c) 2011. All rights reserved.
+   </copyright>
+
+   <license url="">
+      Eclipse Public License 1.0
+   </license>
+
+   <plugin
+         id="com.bandlem.eclipse.fullscreen.ui"
+         os="macosx"
+         ws="cocoa"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.201107241142"
+         unpack="false"/>
+
+</feature>
