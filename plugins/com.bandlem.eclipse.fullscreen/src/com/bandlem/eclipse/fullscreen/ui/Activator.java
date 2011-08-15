@@ -16,6 +16,7 @@ import org.eclipse.swt.internal.cocoa.NSWindow;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWindowListener;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -30,17 +31,31 @@ public class Activator extends AbstractUIPlugin implements IWindowListener {
 
 	private static final String METHOD_NAME = "setCollectionBehavior";
 
-	public static class Startup implements IStartup {
+	public static class Startup implements Runnable, IStartup {
+
+		private IWorkbenchWindow[] windows;
 
 		@Override
 		public void earlyStartup() {
-			// will trigger the bundle start
+			IWorkbench workbench = PlatformUI.getWorkbench();
+			windows = workbench
+					.getWorkbenchWindows();
+			workbench.getDisplay().asyncExec(this);
+		}
+
+		@Override
+		public void run() {
+			for (int i = 0; i < windows.length; i++) {
+				IWorkbenchWindow iWorkbenchWindow = windows[i];
+				setWindowFullscreen(iWorkbenchWindow.getShell());
+			}
 		}
 	}
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.bandlem.eclipse.fullscreen.ui"; //$NON-NLS-1$
-	private Method setCollectionBehavior;
+
+	private static Method setCollectionBehavior;
 
 	/**
 	 * The constructor
@@ -70,20 +85,6 @@ public class Activator extends AbstractUIPlugin implements IWindowListener {
 			throw new IllegalArgumentException("Cannot find method "
 					+ METHOD_NAME + " in " + clazz);
 		PlatformUI.getWorkbench().addWindowListener(this);
-		IWorkbenchWindow[] windows = PlatformUI.getWorkbench()
-				.getWorkbenchWindows();
-		System.err
-				.println("vvv The below messages are caused by the existing windows having " + METHOD_NAME + " called after startup from com.bandlem.eclipse.fullscreen.ui");
-		for (int i = 0; i < windows.length; i++) {
-			IWorkbenchWindow iWorkbenchWindow = windows[i];
-			// Note: this will cause some 'object leaking with no autorelease
-			// pool' messages,
-			// since it's supposed to be set before the window is opened, not
-			// after.
-			setWindowFullscreen(iWorkbenchWindow.getShell());
-		}
-		System.err
-				.println("^^^ The above messages are caused by the existing windows having " + METHOD_NAME + " called after startup from com.bandlem.eclipse.fullscreen.ui");
 	}
 
 	/**
@@ -133,7 +134,7 @@ public class Activator extends AbstractUIPlugin implements IWindowListener {
 		setWindowFullscreen(shell);
 	}
 
-	private void setWindowFullscreen(final Shell shell) {
+	private static void setWindowFullscreen(final Shell shell) {
 		try {
 			NSWindow nswindow = shell.view.window();
 			nswindow.setToolbar(null);
