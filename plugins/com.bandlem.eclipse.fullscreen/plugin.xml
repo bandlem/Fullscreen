@@ -4,7 +4,39 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="com.bandlem.eclipse.fullscreen.ui.Activator$Startup"></startup>
+            class="com.bandlem.eclipse.fullscreen.ui.Startup"></startup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenHandler"
+            id="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreen"
+            name="Toggle Full Screen">
+      </command>
+      <command
+            defaultHandler="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenEscapeHandler"
+            id="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenEscape"
+            name="ToggleFullScreenEscape">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:window?after=newEditor">
+                           <command
+                                 commandId="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreen"
+                                 label="Toggle Full Screen"/>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenEscape"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="Esc">
+      </key>
    </extension>
 
 </plugin>
