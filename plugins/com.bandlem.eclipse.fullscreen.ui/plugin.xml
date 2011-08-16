@@ -9,14 +9,10 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenHandler"
+            categoryId="org.eclipse.ui.category.window"
+            description="Toggle Full Screen"
             id="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreen"
             name="Toggle Full Screen">
-      </command>
-      <command
-            defaultHandler="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenEscapeHandler"
-            id="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenEscape"
-            name="ToggleFullScreenEscape">
       </command>
    </extension>
    <extension
@@ -25,18 +21,25 @@
             allPopups="false"
             locationURI="menu:window?after=newEditor">
                            <command
-                                 commandId="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreen"
-                                 label="Toggle Full Screen"/>
+                                 commandId="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreen">
+                           </command>
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenEscape"
+            commandId="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreen"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="Esc">
+            sequence="CTRL+COMMAND+F">
       </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreenHandler"
+            commandId="com.bandlem.eclipse.fullscreen.ui.ToggleFullScreen">
+      </handler>
    </extension>
 
 </plugin>
